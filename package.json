@@ -1,0 +1,38 @@
+{
+  "name": "news-article-ranker",
+  "version": "1.0.0",
+  "description": "BBC coding test",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build",
+    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/",
+    "build:prod": "webpack -p && cp src/index.html dist/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexmhaley/news-article-ranker.git"
+  },
+  "keywords": [
+    "articles"
+  ],
+  "author": "Alex Haley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alexmhaley/news-article-ranker/issues"
+  },
+  "homepage": "https://github.com/Alexmhaley/news-article-ranker#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.1"
+  }
+}
