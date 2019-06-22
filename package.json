@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/",
+    "build": "webpack -d && cp src/index.html dist/index2.html && cp src/app.css dist/app.css && webpack-dev-server --content-base src/",
     "build:prod": "webpack -p && cp src/index.html dist/index.html"
   },
   "repository": {
