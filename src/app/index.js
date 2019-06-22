@@ -30,13 +30,15 @@ class NewsCard extends React.Component {
       const excerpt = article.excerpt;
       console.log(article);
     return (
-          <Card style={{ width: '18rem' }}>
+        <Row>
+          <Card className="p-3">
           <Card.Body>
             <Card.Title>{article.title}</Card.Title>
             <Rating onClick={(rate) => this.update_rating(rate)} initialRating={this.state.rating}/>
             <Button variant="primary" onClick={() => this.props.update_article(this.state.article_id)}>View article</Button>
           </Card.Body>
         </Card>
+        </Row>
     );
   }
 }
@@ -64,15 +66,13 @@ class CardList extends React.Component{
             i += 1;
         });
         return(
-        <Container fluid="true">
+        <Container>
             <Row>
-                <Col>
-                    <ArticleDetails article_id={this.state.selected_article}/>
-                </Col>
-                <Col>
-                    <CardColumns>
-                             {rows}
-                    </CardColumns>
+                <Col sm={3}>
+                {rows}
+              </Col>
+              <Col sm={9}>
+                  <ArticleDetails article_id={this.state.selected_article}/>
               </Col>
           </Row>
       </Container>
@@ -92,7 +92,7 @@ class ArticleDetails extends React.Component{
 
         return(
             <div className="article_details">
-            <Card style={{ width: '60%' }}>
+            <Card style={{ width: '100%' }}>
             <Card.Body>
                 <Card.Title>{article['title']}</Card.Title>
                 {article['body'].map(function(element){
