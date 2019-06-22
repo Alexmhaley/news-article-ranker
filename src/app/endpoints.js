@@ -171,8 +171,102 @@ var article3 = {
   ]
 };
 
-function get_data(){
-    var articles = [article1, article2, article3];
+var article4={
+  "title": "Maecenas venenatis lorem ut erat dictum, sed varius est porta",
+  "body": [
+    {
+      "type": "heading",
+      "model": {
+        "text": "Maecenas venenatis lorem ut erat dictum, sed varius est porta"
+      }
+    },
+    {
+      "type": "paragraph",
+      "model": {
+        "text": "Donec et fermentum elit, in aliquet massa. Suspendisse mollis tristique vulputate. Ut congue, quam quis volutpat egestas, nisl sem tempus urna, quis consequat arcu leo vitae turpis."
+      }
+    },
+    {
+      "type": "list",
+      "model": {
+        "type": "unordered",
+        "items": [
+          "Donec commodo ipsum id tellus cursus, vel fermentum elit venenatis",
+          "Nullam pulvinar orci felis, eget maximus ex imperdiet accumsan",
+          "Nulla ut lectus at est fringilla pellentesque",
+          "Duis elementum feugiat lacus non condimentum"
+        ]
+      }
+    },
+    {
+      "type": "paragraph",
+      "model": {
+        "text": "Nunc auctor porttitor est, sed laoreet tortor mattis eget."
+      }
+    },
+    {
+      "type": "list",
+      "model": {
+        "type": "unordered",
+        "items": [
+          "Etiam ultrices libero eget orci maximus luctus",
+          "Sed at luctus diam, eget tincidunt arcu"
+        ]
+      }
+    },
+    {
+      "type": "paragraph",
+      "model": {
+        "text": "Cras sodales odio et elit scelerisque, at aliquam elit facilisis. Suspendisse erat erat, egestas sed vehicula ac, finibus non velit. Curabitur fermentum iaculis velit eget semper."
+      }
+    }
+  ]
+};
+
+var article5 = {
+  "title": "Nulla nibh erat, pharetra at ultricies nec, tincidunt luctus arcu",
+  "body": [
+    {
+      "type": "heading",
+      "model": {
+        "text": "Nulla nibh erat, pharetra at ultricies nec, tincidunt luctus arcu"
+      }
+    },
+    {
+      "type": "image",
+      "model": {
+        "url": "https://picsum.photos/640/420/?random",
+        "altText": "Donec purus augue, lobortis et velit maximus, rutrum scelerisque ipsum",
+        "height": "420",
+        "width": "640"
+      }
+    },
+    {
+      "type": "image",
+      "model": {
+        "url": "https://picsum.photos/640/420/?random",
+        "altText": "Etiam at nisl diam",
+        "height": "420",
+        "width": "640"
+      }
+    },
+    {
+      "type": "paragraph",
+      "model": {
+        "text": "Suspendisse id erat a nibh rutrum consectetur. Ut porttitor arcu id nibh pellentesque, et laoreet sapien accumsan. Phasellus quis finibus ipsum. Cras malesuada eu arcu sed laoreet. Nulla egestas ac eros vel eleifend. Nam porta ornare nisl, quis gravida dolor sagittis a."
+      }
+    }
+  ]
+};
+
+function get_data(article_id=null){
+    //This is used to replicate get requests to the server, there are 2 kinds:
+    // get all articles and if an id of an article is sent get one article
+    var articles = [article1, article2, article3, article4, article5];
+
+    if (article_id!==null){
+        return articles[article_id]
+    }
     return articles;
 }
 
