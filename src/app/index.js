@@ -7,29 +7,33 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-
+import Rating from 'react-rating';
 var get_data = require('./endpoints.js');
 
 class NewsCard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-          article_id:this.props.article_id    //show the first article as default
+          article_id:this.props.article_id,    //show the first article as default
+          rating:0
         }
       }
+
+    update_rating(value){
+        console.log(value);
+        console.log(this.state.article_id);
+        this.setState({rating:value});
+    }
 
   render() {
       const article = this.props.news_article;
       const excerpt = article.excerpt;
       console.log(article);
-      const ranking = 0;
     return (
           <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title>{article.title}</Card.Title>
-            <Card.Text>
-              {ranking}
-            </Card.Text>
+            <Rating onClick={(rate) => this.update_rating(rate)} initialRating={this.state.rating}/>
             <Button variant="primary" onClick={() => this.props.update_article(this.state.article_id)}>View article</Button>
           </Card.Body>
         </Card>
@@ -45,7 +49,7 @@ class CardList extends React.Component{
         this.state = {
           selected_article: 0   //show the first article as default
         }
-        this.update_article  = this.update_article.bind(this);
+        this.update_article = this.update_article.bind(this);
       }
 
       update_article(selected_article) {
