@@ -60,23 +60,18 @@ class CardList extends React.Component{
             i += 1;
         });
         return(
-        <div>
+        <Container fluid="true">
             <Row>
                 <Col>
-                    <div>
-                        <CardColumns>
-                             {rows}
-                    </CardColumns>)
-
-                    </div>
+                    <ArticleDetails article_id={this.state.selected_article}/>
                 </Col>
                 <Col>
-                    <div>
-                        <ArticleDetails article_id={this.state.selected_article}/>
-                    </div>
+                    <CardColumns>
+                             {rows}
+                    </CardColumns>
               </Col>
           </Row>
-      </div>
+      </Container>
         )
     }
 }
@@ -93,7 +88,7 @@ class ArticleDetails extends React.Component{
 
         return(
             <div className="article_details">
-            <Card style={{ width: 700 }}>
+            <Card style={{ width: '60%' }}>
             <Card.Body>
                 <Card.Title>{article['title']}</Card.Title>
                 {article['body'].map(function(element){
