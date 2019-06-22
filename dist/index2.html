@@ -3,12 +3,29 @@
     <head>
         <meta charset="utf-8">
         <title>article ranker</title>
+        <style >
+            .card {
+              box-shadow: 4px 8px 12px 4px rgba(0,0,0,0.2);
+              transition: 0.3s;
+              border-radius: 5px; /* 5px rounded corners */
+              margin: auto;
+              width: 500px;
+              text-align: center;
+            }
+
+            .title {
+                text-align: center;
+
+            }
+
+            /* Add rounded corners to the top left and the top right corner of the image */
+            img {
+              border-radius: 5px 5px 0 0;
+            }
+        </style>
     </head>
     <body>
-    <script>console.log("THIS IS WORKING AT LEAST");</script>
-    <script src="bundle.js"></script>
-    <script type="text/javascript">
-        console.log("AFTER");
-    </script>
+    <div id="container"></div>
+    <script src="app/bundle.js"></script>
     </body>
 </html>
