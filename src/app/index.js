@@ -6,7 +6,7 @@ import CardColumns from 'react-bootstrap/CardColumns'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import ListGroup from 'react-bootstrap/ListGroup'
 import Rating from 'react-rating';
 var get_data = require('./endpoints.js');
 
@@ -15,14 +15,22 @@ class NewsCard extends React.Component {
         super(props)
         this.state = {
           article_id:this.props.article_id,    //show the first article as default
-          rating:0
+          rating:this.get_user_rating(this.props.article_id)
         }
       }
 
     update_rating(value){
-        console.log(value);
-        console.log(this.state.article_id);
+        //This would actually be a call to the server to set the rating on the
+        //article based on the article id and the user id so their preferences
+        //could be saved between sessions as well as setting it in the state
         this.setState({rating:value});
+    }
+
+    get_user_rating(article_id){
+        //Would be an api get call to the server to get the user's rating based on the
+        //article id and using the current user's id
+        //Returns a random starting value to replicate a user already having rated some articles
+        return Math.floor(Math.random() * 5);
     }
 
   render() {
@@ -47,17 +55,15 @@ class NewsCard extends React.Component {
 class CardList extends React.Component{
     constructor(props) {
         super(props)
-
         this.state = {
           selected_article: 0   //show the first article as default
         }
         this.update_article = this.update_article.bind(this);
       }
 
-      update_article(selected_article) {
-                this.setState({selected_article:selected_article});
-                console.log("Set STATE");
-          }
+     update_article(selected_article) {
+        this.setState({selected_article:selected_article});
+    }
     render() {
         const rows = [];
         var i = 0;
@@ -87,14 +93,15 @@ class ArticleDetails extends React.Component{
         this.state = {}
       }
     render(){
-        const article = get_data()[this.props.article_id];
+        const article = get_data(this.props.article_id);
         const details = [];
 
         return(
             <div className="article_details">
             <Card style={{ width: '100%' }}>
             <Card.Body>
-                <Card.Title>{article['title']}</Card.Title>
+                <h3>{article['title']}</h3>
+                <p></p>
                 {article['body'].map(function(element){
                     switch (element['type']){
                         case "paragraph":
@@ -108,11 +115,18 @@ class ArticleDetails extends React.Component{
                             )
                         case "image":
                             return(
-                                <Card.Img src={element['model']['url']} alt={element['altText']} width={element['model']['width']} height={element['model']['height']}></Card.Img>
+                                <Card.Img src={element['model']['url']} alt={element['altText']} width={element['model']['width']} height={element['model']['height']} padding-bottom='40px' padding-top='40px'></Card.Img>
                             )
                         case "list":
+                            var list_items = [];
+                            element['model']['items'].forEach((list_item) => {
+                                list_items.push(<ListGroup.Item>{list_item}</ListGroup.Item>);
+                            });
+
                             return(
-                                <Card.Text> {element['model']['items'][0]}</Card.Text>
+                                <ListGroup variant="flush">
+                                {list_items}
+                              </ListGroup>
                             )
                     }
                 })}
